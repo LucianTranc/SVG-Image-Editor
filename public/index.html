@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Lucian Tranc SVG Database</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CHANGE ME">
+    <meta name="keywords" content="CHANGE ME">
+    <meta name="author" content="CHANGE ME">
+    <!-- Load jquery, bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <!-- Custom CSS End -->
+</head>
+<body>
+    <br />
+    <hr>
+    <center><h1>SVG Image Editor</h1></center>
+    <hr>
+    <h3>File Log Panel</h3>
+    <div class = "overflowtable">
+        <table id="FileLogPanel" width="1000">
+            <thead>
+                <th>Image<br />(click to download)</th>
+                <th>File name<br />(click to download)</th>
+                <th width = "150">File size</th>
+                <th width = "150">Number of rectangles</th>
+                <th width = "150">Number of circles</th>
+                <th width = "150">Number of paths</th>
+                <th width = "150">Number of groups</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <hr>
+    <h3>SVG View Panel</h3>
+    
+    <p></p>
+
+    <select id="imagedropdown" name="images">
+        <option value="" disabled selected>SVG Images</option>
+    </select>
+    
+    <br />
+    <br />
+    <div class = "overflowtableview">
+        <table id="SVGViewPanel" width="900" height="800">
+            <tr>
+                <td colspan = "3">
+                    <center>
+                        <img id="SVGViewPanelImage" width="800">
+                    </center>
+                </td>
+            </tr>
+            <tbody>
+                <tr>
+                    <td colspan = "1" class = "tableheader"><center>Title</center></td>
+                    <td colspan = "2" class = "tableheader"><center>Description</center></td>
+                </tr>
+                <tr id = "tdrow">
+                    <td colspan = "1" id = "titlecell"></td>
+                    <td colspan = "1" id = "descriptioncell"></td>
+                    <td id = "tdeditcell">
+                        <button type="button" data-toggle="modal" data-target="#tdeditmodal">Edit Title or Description</button>
+                        <div id="tdeditmodal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Edit Title or Description</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
+                                            <form ref="TitleEdit" id="TitleEdit">
+                                                <div class="form-group">
+                                                    <label for="TitleEdit_form">Enter new Title</label>
+                                                    <input type="text" class="form-control" id="TitleEdit_form" value="" placeholder="Title" maxlength="255">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="submit" class="titleeditsubmit" id="TitleEdit">
+                                                </div>
+                                            </form>
+                                        </p>
+                                        <p>
+                                            <form ref="DescriptionEdit" id="DescriptionEdit">
+                                                <div class="form-group">
+                                                    <label for="DescritionEdit_form">Enter new Description</label>
+                                                    <input type="text" class="form-control" id="DescriptionEdit_form" value="" placeholder="Description">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="submit" class="descriptioneditsubmit" id="DescriptionEdit">
+                                                </div>
+                                            </form>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tr>
+                <td class = "tableheader"><center>Component</center></td>
+                <td colspan="1" class = "tableheader"><center>Summary</center></td>
+                <td class = "tableheader"><center>Other Attributes</center></td>
+            </tr>
+            <tbody id = "componentList">
+            </tbody>
+
+        </table>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="column">
+            <h3>Scale Shape</h3><br>
+            <label for="scaleimagedropdown">Select Image</label><br>
+            <select id="scaleimagedropdown" name="images">
+                <option value="" disabled selected>SVG Images</option>
+            </select>
+            <br><br>
+            <button type="button" data-toggle="modal" data-target="#scalermodal">Scale Rectangle</button>
+            <div id="scalermodal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Scale Rectangle</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                <form ref="RectangleScale" id="RectangleScale">
+                                </form>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" data-toggle="modal" data-target="#scalecmodal">Scale Circle</button>
+            <div id="scalecmodal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Scale Circle</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                <form ref="CircleScale" id="CircleScale">
+                                </form>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="column" margin = "50px">
+            <h3>Create SVG Image</h3>
+            <br>
+            <form ref="createSVG" id="createSVG">
+                <div class="form-group">
+                    <label for="createSVG_form">Enter file name:</label>
+                    <input type="text" class="form-control" id="createSVG_filename" value="" placeholder="filename">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="createSVGsubmit" id="createSVG">
+                </div>
+            </form>
+        </div>
+        
+        
+        <br>
+        <br>
+        <div class="column" margin-left = "50px">
+            <h3>Add Component</h3><br>
+            <label for="componentimagedropdown">Select Image</label><br>
+            <select id="componentimagedropdown" name="images">
+                <option value="" disabled selected>SVG Images</option>
+            </select>
+            <br>
+            <br>
+            <button type="button" data-toggle="modal" data-target="#addrmodal">Add Rectangle</button>
+            <div id="addrmodal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add Rectangle</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                <form ref="RectangleAdd" id="RectangleAdd">
+                                    <div class="form-group">
+                                        <label for="RectangleAddx_form">Enter x Value</label>
+                                        <input type="text" class="form-control" id="RectangleAddx_form" value="" placeholder="x value">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="RectangleAddy_form">Enter y Value</label>
+                                        <input type="text" class="form-control" id="RectangleAddy_form" value="" placeholder="y value">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="RectangleAddw_form">Enter Width Value</label>
+                                        <input type="text" class="form-control" id="RectangleAddw_form" value="" placeholder="width value">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="RectangleAddh_form">Enter Height Value</label>
+                                        <input type="text" class="form-control" id="RectangleAddh_form" value="" placeholder="height value">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="RectangleAddu_form">Enter Units</label>
+                                        <input type="text" class="form-control" id="RectangleAddu_form" value="" placeholder="Units">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" class="rectangleaddsubmit" id="RectangleAdd">
+                                    </div>
+                                </form>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" data-toggle="modal" data-target="#addcmodal">Add Circle</button>
+            <div id="addcmodal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add Rectangle</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                <form ref="CircleAdd" id="CircleAdd">
+                                    <div class="form-group">
+                                        <label for="CircleAddcx_form">Enter cx Value</label>
+                                        <input type="text" class="form-control" id="CircleAddcx_form" value="" placeholder="cx value">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="CircleAddcy_form">Enter cy Value</label>
+                                        <input type="text" class="form-control" id="CircleAddcy_form" value="" placeholder="cy value">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="CircleAddr_form">Enter Radius Value</label>
+                                        <input type="text" class="form-control" id="CircleAddr_form" value="" placeholder="r value">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="CircleAddu_form">Enter Units</label>
+                                        <input type="text" class="form-control" id="CircleAddu_form" value="" placeholder="units">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" class="circleaddsubmit" id="CircleAdd">
+                                    </div>
+                                </form>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class = "column" margin = "50px">
+            <h3>Upload a File:</h3>
+            <br>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <label for="myfile">Select a file:</label><br>
+                <input type="file" id="myfile" name="uploadFile"><br><br>
+                <input type="submit">
+            </form>
+        </div>
+        <br>
+    </div>
+    <br>
+    <br>
+    <hr>
+    <br>
+    
+    <br>
+    <br>
+    <br>
+    <!-- Leave me at the bottom of body -->
+    <script src="/index.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
