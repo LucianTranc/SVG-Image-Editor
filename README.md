@@ -20,12 +20,12 @@ I will still include this in case I choose to update it in the future
 works with Node v15.2.1 and npm v7.0.10
 
 (on Windows/Linux)
-*cd ./parser && make parser
-*npm run dev
+* cd ./parser && make parser
+* npm run dev
 
 (on Mac)
-*cd ./parser && make parserdylib
-*npm run dev
+* cd ./parser && make parserdylib
+* npm run dev
 app will run on localhost/3000
 
 You may need to change your library path so the linker can find libxml2.
