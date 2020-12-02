@@ -13,6 +13,10 @@ https://svg-editor.herokuapp.com/
 It may take a little bit to load.
 
 # To run
+
+This repository will not run. This is public for people to look at the parser code if they wish
+
+I will still include this in case I choose to update it in the future
 works with Node v15.2.1 and npm v7.0.10
 
 (on Windows/Linux)
