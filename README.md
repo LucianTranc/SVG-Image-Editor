@@ -1,6 +1,6 @@
 # SVG-Image-Editor
 
-A web app that allows users to edit, scale and add or delete image elements from .svg images. The app works by calling a C library through Node.js' ffi-napi add on. The C library uses libxml2 to parse the images into xml trees which are converted to my own data structure that separates the images into groups, paths, rectangles and circles. One the image is parsed and converted into workable data, the user can then perform mutations on the elements that were parsed. Once the user makes the changes the library can then revert the data structure back into an xml tree which then results in the final .svg image as output
+A web app that allows users to edit, scale and add or delete image elements from .svg images. The app works by calling a C library through Node.js' ffi-napi add on. The C library uses libxml2 to parse the images into xml trees which are converted to my own data structures that separates the images into groups, paths, rectangles and circles. Once the image is parsed and converted into workable data, the user can then perform mutations on the elements that were parsed. Once the user makes the changes the library can then revert the data structure back into an xml tree which then results in the final .svg image as output
 
 # What I Learned
 
